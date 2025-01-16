@@ -14,6 +14,7 @@ runs:
         fetch-depth: 0
 
     - name: Validate commit timestamps
+      shell: bash
       run: |
         set -euo pipefail
 
