@@ -19,7 +19,7 @@ jobs:
           PR_COMMITS=$(git rev-list ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
 
           CURRENT_DATE=$(date --utc +%s)
-          YEAR_2038=$(date --utc --date="2024-01-19 03:14:07" +%s)
+          YEAR_2038=$(date --utc --date="2038-01-19 03:14:07" +%s)
 
           for COMMIT in $PR_COMMITS; do
             COMMIT_DATE=$(git show -s --format=%ct "$COMMIT")
