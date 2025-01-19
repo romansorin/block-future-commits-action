@@ -11,8 +11,7 @@ runs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.pull_request.head.ref }}
-        fetch-depth: 50
+        fetch-depth: $(( ${{ github.event_name == 'pull_request' && github.event.pull_request.commits || 0 }} + 1 ))
 
     - name: Validate commit timestamps
       shell: bash

@@ -12,8 +12,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4.2.2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 50
+          fetch-depth: $(( ${{ github.event_name == 'pull_request' && github.event.pull_request.commits || 0 }} + 1 ))
 
       - name: Block Future Commits
         uses: ./
