@@ -24,11 +24,12 @@ runs:
         YEAR_2038=$(date --utc --date="2038-01-19 03:14:07" +%s)
 
         for COMMIT in $PR_COMMITS; do
-          COMMIT_DATE=$(git show -s --format=%ct "$COMMIT")
+          COMMIT_DATE_CT=$(git show -s --format=%ct "$COMMIT")
+          COMMIT_DATE_AT=$(git show -s --format=%at "$COMMIT")
 
-          echo $COMMIT_DATE
+          echo "Commit $COMMIT: Committer Date (ct)=$COMMIT_DATE_CT, Author Date (at)=$COMMIT_DATE_AT"
 
-          if [ "$COMMIT_DATE" -gt "$YEAR_2038" ]; then
+          if [ "$COMMIT_DATE_CT" -gt "$YEAR_2038" ] || [ "$COMMIT_DATE_AT" -gt "$YEAR_2038" ]; then
             echo "::error title=Invalid Commit Date::Commit $COMMIT has a timestamp exceeding the 2038 Unix limit."
             exit 1
           fi
