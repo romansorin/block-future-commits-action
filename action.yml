@@ -12,6 +12,7 @@ runs:
       uses: actions/checkout@v4
 
     - name: Dump GitHub context
+      shell: bash
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
