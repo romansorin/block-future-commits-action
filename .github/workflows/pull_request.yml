@@ -9,11 +9,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4.2.2
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 50
-
       - name: Block Future Commits
         uses: ./

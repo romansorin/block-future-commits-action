@@ -10,6 +10,8 @@ runs:
   steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Dump GitHub context
       shell: bash
